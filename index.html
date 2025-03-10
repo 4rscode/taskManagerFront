@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanban-доска</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="modal.css">
+</head>
+<body>
+  <div class="menu">
+    <button data-team="team1">Команда 1</button>
+    <button data-team="team2">Команда 2</button>
+  </div>
+
+  <div class="board-container">
+    <div class="board" id="kanbanBoard">
+      <!-- Колонки и новая кнопка будут добавляться сюда динамически -->
+    </div>
+  </div>
+
+<!--
+<div class="modal" id="taskModal" style="display: none;">
+  <div class="modal-content">
+    <span class="modal-close">×</span>
+    <h2 class="modal-title"></h2>
+    <div class="modal-section">
+      <label>Описание:</label>
+      <textarea class="modal-description" placeholder="Введите описание..."></textarea>
+    </div>
+    <div class="modal-section">
+      <label>Ответственные:</label>
+      <div class="modal-assignees"></div>
+      <button class="modal-add-assignee-btn">+</button>
+    </div>
+    <div class="modal-section">
+      <label>Дедлайн:</label>
+      <input type="date" class="modal-due-date">
+    </div>
+    <div class="modal-section">
+      <label>Прикрепленные изображения:</label>
+      <div class="modal-images"></div>
+      <input type="file" class="modal-image-upload" accept="image/*">
+      <button class="modal-add-image">Загрузить</button>
+    </div>
+    <button class="modal-save">Сохранить изменения</button>
+  </div>
+</div>
+
+<div class="assignee-picker" id="assigneePicker" style="display: none;">
+  <div class="assignee-picker-content">
+    <span class="assignee-picker-close">×</span>
+    <h3>Выберите ответственных</h3>
+    <div class="assignee-list"></div>
+    <button class="assignee-picker-save">Добавить</button>
+  </div>
+</div>
+-->
+
+  <script src="script.js"></script>
+</body>
+</html>

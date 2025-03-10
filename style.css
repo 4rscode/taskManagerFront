@@ -1,0 +1,762 @@
+/* Базовые стили для всей страницы */
+html, body {
+  height: 100%; /* Устанавливаем полную высоту */
+  margin: 0; /* Убираем стандартные отступы */
+  padding: 0;
+  overflow-x: auto; /* Горизонтальная прокрутка для всей страницы */
+  overflow-y: hidden; /* Убираем вертикальную прокрутку на уровне страницы */
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-color: #e6f0ec;
+  padding: 20px;
+  color: #333;
+  min-height: 100vh; /* Убеждаемся, что body занимает всю высоту */
+  box-sizing: border-box; /* Учитываем padding в высоте */
+}
+
+/* Стили для меню */
+.menu {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.menu button {
+  padding: 12px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #10b981, #047857);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #059669, #065f46);
+}
+
+/* Контейнер доски */
+.board-container {
+  padding: 20px;
+  width: auto; /* Позволяем растягиваться по содержимому */
+  min-height: calc(100vh - 60px); /* Учитываем padding и высоту меню */
+}
+
+/* Тело доски */
+.board {
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+  align-items: flex-start;
+  width: auto;
+  min-width: 100%;
+}
+
+/* Контейнер для ввода новой колонки */
+.new-column-input-container {
+  width: 300px;
+  flex-shrink: 0;
+  padding: 15px;
+}
+
+.new-column-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border: 2px solid #059669;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.new-column-input:focus {
+  border-color: #10b981;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.new-column-input::placeholder {
+  color: #888;
+}
+
+/* Контейнер для ввода новой задачи */
+.new-task-input-container {
+  padding: 10px;
+}
+
+/* Кнопка добавления колонки */
+.add-column-btn {
+  width: 300px;
+  padding: 12px;
+  margin: 10px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #10b981, #047857);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-column-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #059669, #065f46);
+}
+
+/* Кнопка добавления задачи */
+.add-task-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #10b981, #047857);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 0.9em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.add-task-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #059669, #065f46);
+}
+
+/* Поле ввода новой задачи */
+.new-task-input {
+  width: 100%;
+  padding: 8px;
+  font-size: 0.9em;
+  border: 2px solid #059669;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.new-task-input:focus {
+  border-color: #10b981;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.new-task-input::placeholder {
+  color: #888;
+}
+
+/* Стили для колонок */
+.column {
+  background-color: #ffffff;
+  border-radius: 12px;
+  width: 300px;
+  padding: 15px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  cursor: move;
+  transition: transform 0.2s ease;
+  max-height: calc(100vh - 140px); /* Расчёт высоты */
+  overflow: hidden; /* Предотвращает выход содержимого за пределы */
+}
+
+.column.dragging {
+  opacity: 0.5;
+  transform: scale(0.98); /* Лёгкое уменьшение при перетаскивании */
+}
+
+.column.drag-over {
+  border: 2px dashed #10b981;
+  background-color: #f0f7f4;
+  transition: border 0.1s ease, background-color 0.1s ease; /* Быстрая подсветка */
+}
+
+
+#kanbanBoard {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 20px;
+}
+
+/* Заголовок колонки */
+.column-header {
+  font-weight: 600;
+  margin-bottom: 15px;
+  font-size: 1.2em;
+  text-align: center;
+  color: #059669;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 5px;
+}
+
+/* Контекстное меню */
+.context-menu {
+  display: none;
+  position: fixed;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 150px;
+}
+
+.column .context-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px 15px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.9em;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.context-menu.active {
+  display: block;
+}
+
+.column-header .more-btn {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  line-height: 1;
+}
+
+.task .context-menu .rename-btn:hover,
+.column .context-menu .rename-btn:hover {
+  background-color: #cceff5;
+}
+
+.column-header .more-btn:hover {
+  color: #333;
+}
+
+/* Список задач */
+.task-list {
+  max-height: calc(100vh - 200px); /* Упрощаем расчёт, учитываем заголовок и кнопку */
+  overflow-y: auto;
+  border-radius: 8px;
+  padding: 10px;
+  transition: all 0.3s ease;
+  flex-grow: 1; /* Позволяет списку задач занимать доступное пространство */
+}
+
+/* Стили для задач */
+.task {
+  position: relative;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  cursor: grab;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.task-checkbox {
+  margin-right: 10px;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 2px solid #666;
+  border-radius: 50%;
+  position: relative;
+  background-color: #fff;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.task-checkbox:checked {
+  background-color: #059669;
+  border-color: #059669;
+}
+
+.task-checkbox:checked::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 5px;
+  border-left: 2px solid white;
+  border-bottom: 2px solid white;
+  transform: translate(-50%, -65%) rotate(-45deg);
+}
+
+.task.completed .task-name {
+  text-decoration: line-through !important;
+  color: #888 !important;
+}
+
+.task.completed {
+  background-color: #f0f0f0 !important;
+}
+
+.task.dragging {
+  opacity: 0.6;
+  transform: scale(1.02);
+  transition: none;
+}
+
+.task:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task.overdue {
+  background-color: #ffe6e6 !important;
+  border-left: 4px solid #ff4d4d !important;
+}
+
+.task .task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task .task-name {
+  font-size: 1em;
+  color: #333;
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.task .description.visible {
+  display: block;
+}
+
+.task .description {
+  display: none;
+  font-size: 0.9em;
+  margin-top: 5px;
+  color: #555;
+  max-height: 100px;
+  overflow-y: auto;
+  word-wrap: break-word;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.task .description::-webkit-scrollbar {
+  width: 6px;
+}
+
+.task .description::-webkit-scrollbar-thumb {
+  background-color: #10b981;
+  border-radius: 3px;
+}
+
+.task .description::-webkit-scrollbar-track {
+  background-color: #f0f0f0;
+}
+
+.task .description,
+.task .due-date,
+.task .overdue-notice {
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.task .due-date {
+  color: #888;
+}
+
+.task .overdue-notice {
+  color: #ff4d4d;
+  font-weight: bold;
+}
+
+.task .more-btn {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  line-height: 1;
+}
+
+.task .more-btn:hover {
+  color: #333;
+}
+
+.task .context-menu {
+  display: none;
+  position: fixed;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 150px;
+}
+
+.task .context-menu.active {
+  display: block;
+}
+
+.task .context-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px 15px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 0.9em;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.column .context-menu button:hover {
+  background-color: #f0f0f0;
+}
+
+.column .context-menu .rename-btn:hover {
+  background-color: #cceff5;
+}
+
+.column .context-menu .delete-btn:hover {
+  background-color: #ffcccc;
+}
+
+.new-column-input,
+.new-task-input {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Поле ввода описания задачи */
+.task-description-input {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px;
+  font-size: 1em;
+  line-height: 1.4;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #333;
+  border: 2px solid #059669;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  outline: none;
+  resize: vertical;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-description-input:focus {
+  border-color: #10b981;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-description-input::placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+/* Hover-эффекты для кнопок контекстного меню задач */
+.task .context-menu .edit-btn:hover {
+  background-color: #fff3cd;
+}
+
+.task .context-menu .rename-btn:hover {
+  background-color: #cceff5;
+}
+
+.task .context-menu .delete-btn:hover {
+  background-color: #ffcccc;
+}
+
+.task .context-menu .edit-due-date-btn:hover {
+  background-color: #d4edda;
+}
+
+/* Общие стили для кнопок */
+button {
+  background: linear-gradient(135deg, #10b981, #047857);
+  color: white;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #059669, #065f46);
+}
+
+/* Модальное окно */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal.active {
+  opacity: 1;
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 550px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.modal.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.8em;
+  color: #888;
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.modal-close:hover {
+  color: #ff4d4d;
+  transform: rotate(90deg);
+}
+
+.modal-title {
+  font-size: 1.6em;
+  color: #059669;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.modal-section {
+  margin-bottom: 25px;
+}
+
+.modal-section label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 1.1em;
+}
+
+.modal-description,
+.modal-comment-input {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  font-size: 1em;
+  border: 2px solid #059669;
+  border-radius: 10px;
+  background-color: #f9fafb;
+  resize: vertical;
+  box-sizing: border-box;
+  color: #333;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-description:focus,
+.modal-comment-input:focus {
+  border-color: #10b981;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.2);
+  outline: none;
+}
+
+.modal-assignee,
+.modal-due-date {
+  width: 100%;
+  padding: 12px;
+  font-size: 1em;
+  border: 2px solid #059669;
+  border-radius: 10px;
+  background-color: #ffffff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-assignee:focus,
+.modal-due-date:focus {
+  border-color: #10b981;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.2);
+  outline: none;
+}
+
+.modal-comments {
+  max-height: 120px;
+  overflow-y: auto;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+
+.modal-comment {
+  margin-bottom: 8px;
+  padding: 10px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  font-size: 0.95em;
+  color: #555;
+  word-wrap: break-word;
+}
+
+.modal-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #f9fafb;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+}
+
+.modal-image {
+  max-width: 80px;
+  max-height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.modal-image:hover {
+  transform: scale(1.05);
+}
+
+.modal-add-comment,
+.modal-add-image,
+.modal-save {
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #10b981, #047857);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.modal-add-comment:hover,
+.modal-add-image:hover,
+.modal-save:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #059669, #065f46);
+}
+
+.modal-content .modal-save {
+  display: block;
+  margin: 20px auto 0;
+}
+
+.modal-comments::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-comments::-webkit-scrollbar-thumb {
+  background-color: #10b981;
+  border-radius: 3px;
+}
+
+.modal-comments::-webkit-scrollbar-track {
+  background-color: #e0e0e0;
+}
+
+/* Поле ввода даты */
+input[type="date"] {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 1em;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #333;
+  border: 2px solid #059669;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+input[type="date"]:focus {
+  border-color: #10b981;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  padding: 5px;
+  cursor: pointer;
+  filter: invert(48%) sepia(13%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="date"]::placeholder {
+  color: #888;
+  font-style: italic;
+}
