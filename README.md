@@ -73,6 +73,9 @@ Task Manager Frontend — это клиентская часть приложе�
 ![Deadline](screenshots/new-deadline.png)  
 *Добавление дедалайна задачи.*
 
+![Column Context menu](screenshots/context-menu-column.png)  
+*Контекстное меню колонки.*
+
 ---
 ## Установка и запуск
 
