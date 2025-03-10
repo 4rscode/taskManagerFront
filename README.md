@@ -1,6 +1,4 @@
 # Task Manager Frontend
-
-![Task Manager Banner](https://via.placeholder.com/800x200.png?text=Task+Manager+Frontend)  
 *Простое и удобное веб-приложение для управления задачами в стиле Kanban-доски.*
 
 ---
@@ -30,19 +28,45 @@ Task Manager Frontend — это клиентская часть приложе�
 Вот как выглядит интерфейс приложения:
 
 ### Главная доска
-![Main Board](screenshots/main-board.png)  
+![Main Board](screenshots/main.png)  
 *Общий вид Kanban-доски с колонками и задачами.*
 
 ### Добавление задачи
-![Add Task](screenshots/add-task.png)  
+![Add Task](screenshots/new-task.png)  
 *Форма добавления новой задачи в колонку.*
+![Add Task](screenshots/new-task1.png)
+*Новая задача в колонке.*
 
 ### Перетаскивание задачи
-![Drag and Drop](screenshots/drag-drop.png)  
+![Drag and Drop-before](screenshots/drag-drop1.png)  
 *Пример перетаскивания задачи между колонками.*
 
+![Drag and Drop-after](screenshots/drag-drop2.png)  
+*Пример перетаскивания задачи между колонками.*
 ---
 
+### Перетаскивание колонки с задачами
+![Drag and Drop-column-before](screenshots/drag-drop-column1.png)  
+*Пример перетаскивания колонки.*
+
+![Drag and Drop-column-after](screenshots/drag-drop-column2.png)  
+*Пример перетаскивания колонки.*
+---
+
+### Контекстное меню для задач и колонок
+![Task Context menu](screenshots/context-menu-task.png)  
+*Контекстное меню задачи.*
+
+![New description](screenshots/new-description.png)  
+*Добавление описания задачи.*
+
+![Rename](screenshots/rename-task.png)  
+*Добавление описания задачи.*
+
+![Deadline](screenshots/new-deadline.png)  
+*Добавление дедалайна задачи.*
+
+---
 ## Установка и запуск
 
 ### Требования
