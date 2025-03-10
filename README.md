@@ -38,18 +38,18 @@ Task Manager Frontend — это клиентская часть приложе�
 *Новая задача в колонке.*
 
 ### Перетаскивание задачи
-![Drag and Drop-before](screenshots/drag-drop1.png)  
+![Drag and Drop-before](screenshots/drag-and-drop1.png)  
 *Пример перетаскивания задачи между колонками.*
 
-![Drag and Drop-after](screenshots/drag-drop2.png)  
+![Drag and Drop-after](screenshots/drag-and-drop2.png)  
 *Пример перетаскивания задачи между колонками.*
 ---
 
 ### Перетаскивание колонки с задачами
-![Drag and Drop-column-before](screenshots/drag-drop-column1.png)  
+![Drag and Drop-column-before](screenshots/drag-and-drop-column1.png)  
 *Пример перетаскивания колонки.*
 
-![Drag and Drop-column-after](screenshots/drag-drop-column2.png)  
+![Drag and Drop-column-after](screenshots/drag-and-drop-column2.png)  
 *Пример перетаскивания колонки.*
 ---
 
